@@ -2,12 +2,14 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: './', // Вказуємо відносний шлях, це найпростіший варіант для GitHub Pages
-  // Або, якщо у вас репозиторій "my-awesome-project", тоді:
-  // base: '/my-awesome-project/',
+  // Назва вашого репозиторію на GitHub
+  base: '/alfa4c/', 
+
   build: {
-    base: '/alfa4c/', // Або /назва-вашого-репозиторію/
-    outDir: 'dist', // Це папка, куди Vite збере збірку
+    outDir: 'dist',
+    sourcemap: true,
   },
-  // Якщо у вас є інші налаштування Vite, додайте їх сюди
+  
+  // Вказуємо, що статичні файли (моделі, draco) знаходяться в папці public
+  publicDir: 'public',
 });

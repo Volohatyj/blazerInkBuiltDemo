@@ -6,7 +6,7 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 // 1. Створюємо розпакувальник
 const dracoLoader = new DRACOLoader();
 // Вказуємо шлях до папки в public (зі слешами на початку і в кінці)
-dracoLoader.setDecoderPath('/draco/'); 
+dracoLoader.setDecoderPath('draco/'); 
 
 // 2. Створюємо завантажувач
 const loader = new GLTFLoader();

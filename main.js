@@ -77,7 +77,7 @@ catcherPlaneMesh.rotation.x = -Math.PI / 2; // Повертаємо площин
 catcherPlaneMesh.receiveShadow = true;
 
 
-loadGLTFModel('/src/assets/glb/Alfa4c_22_V45SubD1DRC.glb', (gltf) => {
+loadGLTFModel('assets/glb/Alfa4c_22_V45SubD1DRC.glb', (gltf) => {
     const model = gltf.scene;
     
     model.traverse((child) => {

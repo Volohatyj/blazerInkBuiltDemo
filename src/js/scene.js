@@ -20,7 +20,7 @@ export function initScene() {
 
     // Завантаження HDR для середовища
     const rgbeLoader = new RGBELoader();
-    rgbeLoader.load('./src/assets/hdr/cedar_bridge_05k.hdr', (texture) => {
+    rgbeLoader.load('assets/hdr/cedar_bridge_05k.hdr', (texture) => {
         texture.mapping = THREE.EquirectangularReflectionMapping;
         texture.colorSpace = THREE.LinearSRGBColorSpace; 
         
