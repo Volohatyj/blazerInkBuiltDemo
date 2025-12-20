@@ -3,8 +3,8 @@ import { initCamera } from './src/js/camera.js'; // Імпортуємо кам�
 import { initRenderer } from './src/js/renderer.js'; // Імпортуємо рендерер
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { initScene } from './src/js/scene.js'; // Імпортуємо ініціалізацію сцени
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-const loader = new GLTFLoader(); // Ось де ви оголошуєте та ініціалізуєте 'loader'
+import { loadGLTFModel } from './src/js/loaders.js';
+
 
 
 // Рендерер
@@ -62,8 +62,6 @@ dirLight.shadow.bias = - 0.0001;
 const dirLightHelper = new THREE.DirectionalLightHelper( dirLight, 10 );
 // scene.add( dirLightHelper );
 
-const gltfLoader = new GLTFLoader();
-
 // Створюємо геометрію площини
 const catcherPlaneGeometry = new THREE.PlaneGeometry(20, 10); // розміри площини: 5х5 одиниць (можеш змінити)
 // Створюємо матеріал зі світло-сірим кольором
@@ -78,14 +76,26 @@ scene.add(catcherPlaneMesh);
 catcherPlaneMesh.rotation.x = -Math.PI / 2; // Повертаємо площину, щоб вона "лежала" як підлога
 catcherPlaneMesh.receiveShadow = true;
 
-const model = gltfLoader.load('./src/assets/glb/Alfa4c_22_V45SubD1.glb', (gltf) => {
-    gltf.scene.traverse((child) => {
+
+loadGLTFModel('/src/assets/glb/Alfa4c_22_V45SubD1DRC.glb', (gltf) => {
+    const model = gltf.scene;
+    
+    model.traverse((child) => {
         if (child.isMesh) {
             child.castShadow = true;
             child.receiveShadow = true;
+            
+            // Оновлюємо матеріали ТУТ, коли модель вже завантажена
+            if (child.material) {
+                child.material.needsUpdate = true;
+                // Якщо є HDR оточення, Three.js підхопить його автоматично, 
+                // якщо матеріал Standard або Physical.
+            }
         }
     });
-    scene.add(gltf.scene);
+    
+    scene.add(model);
+    console.log("Модель додана до сцени");
 });
 
 // Це примушує матеріали об'єктів оновитися і врахувати нове scene.environment.
