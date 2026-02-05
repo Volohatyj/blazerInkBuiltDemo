@@ -30,9 +30,9 @@ controls.dampingFactor = 0.05; // Фактор інерції
 controls.target.set(cameraTargetPosition.x, cameraTargetPosition.y, cameraTargetPosition.z); // Центр обертання камери (положення моделі)
 controls.maxPolarAngle = Math.PI / 2 + 0.1; 
 
-const dirLight = new THREE.DirectionalLight( 0xff6000, 0.5);
+const dirLight = new THREE.DirectionalLight( 0xff6000, 0.3);
 dirLight.color.setHSL( 0.1, 1, 0.95 );
-dirLight.position.set( 2, 2, 0.2);
+dirLight.position.set( 2, 2, -1);
 dirLight.position.multiplyScalar( 30 );
 scene.add( dirLight );
 

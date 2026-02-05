@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   // Назва вашого репозиторію на GitHub
-  base: '/alfa4c/', 
+  base: '/blazerInkBuiltDemo/', 
 
   build: {
     outDir: 'dist',

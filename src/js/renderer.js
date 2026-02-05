@@ -8,7 +8,7 @@ export function initRenderer() {
     renderer.setSize(1728, 1080);
     renderer.outputColorSpace = THREE.SRGBColorSpace; // для налаштування PMREM
     renderer.toneMapping = THREE.LinearToneMapping; // Налаштування тонової компресії
-    renderer.toneMappingExposure = 1; // Експозиція
+    renderer.toneMappingExposure = 0.8; // Експозиція
     renderer.physicallyCorrectLights = true; // Фізично коректне освітлення
 
     // Не забудь увімкнути тіні на рендерері десь в основному файлі:
