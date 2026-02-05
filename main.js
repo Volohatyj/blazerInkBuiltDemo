@@ -16,17 +16,10 @@ const scene = initScene();
 // Ініціалізація камери через імпортовану функцію
 const camera = initCamera();
 
-// Положення точки обертання камери в сцені 3ds Max
-const cameraTargetMaxPosition = {
-    x: 4602.723,
-    y: 4508.343,
-    z: 1668.936
-};
-
 const cameraTargetPosition = {
-    x: 0,
-    y: 0.4,
-    z: 0
+    x: 7,
+    y: 1.8,
+    z: 3
 };
 
 
@@ -59,9 +52,6 @@ dirLight.shadow.camera.bottom = - d;
 dirLight.shadow.camera.far = 3500;
 dirLight.shadow.bias = - 0.0001;
 
-const dirLightHelper = new THREE.DirectionalLightHelper( dirLight, 10 );
-// scene.add( dirLightHelper );
-
 // Створюємо геометрію площини
 const catcherPlaneGeometry = new THREE.PlaneGeometry(20, 10); // розміри площини: 5х5 одиниць (можеш змінити)
 // Створюємо матеріал зі світло-сірим кольором
@@ -77,8 +67,11 @@ catcherPlaneMesh.rotation.x = -Math.PI / 2; // Повертаємо площин
 catcherPlaneMesh.receiveShadow = true;
 
 
-loadGLTFModel('assets/glb/Alfa4c_22_V45SubD1DRC.glb', (gltf) => {
+loadGLTFModel('assets/glb/Blazer_InkBuilt-01.glb', (gltf) => {
     const model = gltf.scene;
+
+    model.position.x = -6.676;
+    model.position.z = 4.56;
     
     model.traverse((child) => {
         if (child.isMesh) {
@@ -118,9 +111,9 @@ scene.traverse((object) => {
 });
   
 // -- ОБМЕЖЕННЯ ПОЗИЦІЇ КАМЕРИ --
-const maxCameraRadius = 15; // Максимальний радіус у площині xz
+const maxCameraRadius = 50; // Максимальний радіус у площині xz
 const cameraMinY = 0.5;
-const cameraMaxY = 15;
+const cameraMaxY = 50;
 
 
 
@@ -129,17 +122,8 @@ function animate() {
     requestAnimationFrame(animate); // Циклічний виклик
     controls.update(); // Оновлюємо контроллер
 
-    // // 2. Застосовуємо обмеження до позиції камери після її оновлення контролерами
-    // camera.position.x = Math.max(cameraMinX, Math.min(cameraMaxX, camera.position.x));
     camera.position.y = Math.max(cameraMinY, Math.min(cameraMaxY, camera.position.y));
-    // camera.position.z = Math.max(cameraMinZ, Math.min(cameraMaxZ, camera.position.z));
-
-    // 2. Застосовуємо обмеження до позиції камери після її оновлення контролерами
-
-    // camera.position.y / cameraFixedY
-
-    // 2.2 Обмежуємо положення в площині XZ радіусом
-    // Спочатку обчислюємо поточний радіус камери відносно початку координат (0,0) в площині xz
+  
     const currentRadius = Math.sqrt(
         camera.position.x * camera.position.x +
         camera.position.z * camera.position.z

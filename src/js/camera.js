@@ -2,22 +2,10 @@
 
 import * as THREE from 'three';
 
-// Положення камери в сцені 3ds Max
-// const cameraMaxPosition = {
-//     x: -10428.34,
-//     y: -7175.064,
-//     z: 1668.933
-// };
-
-// const cameraPosition = {
-//     x: cameraMaxPosition.x / 1000,
-//     y: cameraMaxPosition.z / 1000,
-//     z: -cameraMaxPosition.y / 1000
-// };
 const cameraPosition = {
-    x: -3,
+    x: 21,
     y: 1.8,
-    z: 5
+    z: -10
 };
 
 /**
